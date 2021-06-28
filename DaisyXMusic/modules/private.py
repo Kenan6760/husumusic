@@ -1,19 +1,3 @@
-# Daisyxmusic (Telegram bot project )
-# Copyright (C) 2021  Inukaasith
-
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU Affero General Public License as
-# published by the Free Software Foundation, either version 3 of the
-# License, or (at your option) any later version.
-
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU Affero General Public License for more details.
-#
-# You should have received a copy of the GNU Affero General Public License
-# along with this program.  If not, see <https://www.gnu.org/licenses/>.
-
 import logging
 from DaisyXMusic.modules.msg import Messages as tr
 from pyrogram import Client
@@ -38,15 +22,15 @@ def _start(client, message):
             [
                 [
                     InlineKeyboardButton(
-                        "➕ Add me to your Group 🙋‍♀️", url=f"https://t.me/{BOT_USERNAME}?startgroup=true")],
+                        "➕ Məni Qrupunuza əlavə edin 🙋🏻‍♂️", url=f"https://t.me/{BOT_USERNAME}?startgroup=true")],
                 [
                     InlineKeyboardButton(
-                        "📲 Updates", url=f"https://t.me/{UPDATES_CHANNEL}"), 
+                        "📲 Yeniliklər", url=f"https://t.me/{UPDATES_CHANNEL}"), 
                     InlineKeyboardButton(
-                        "💬 Support", url=f"https://t.me/{SUPPORT_GROUP}")
+                        "💬 Dəstək qrupu", url=f"https://t.me/{SUPPORT_GROUP}")
                 ],[
                     InlineKeyboardButton(
-                        "🛠 Source Code 🛠", url=f"https://{SOURCE_CODE}")
+                        "👨🏻‍💻 Sahibim 👨🏻‍💻", url=f"https://t.me/brendowner")
                 ]
             ]
         ),
@@ -56,12 +40,12 @@ def _start(client, message):
 @Client.on_message(filters.command("start") & ~filters.private & ~filters.channel)
 async def gstart(_, message: Message):
     await message.reply_text(
-        f"""**🔴 {PROJECT_NAME} is online**""",
+        f"""**🔴 Brend Music aktivdir ✅**""",
         reply_markup=InlineKeyboardMarkup(
             [
                 [
                     InlineKeyboardButton(
-                        "💬 Support Chat", url=f"https://t.me/{SUPPORT_GROUP}"
+                        "💬 Dəstək Qrupu", url=f"https://t.me/{SUPPORT_GROUP}"
                     )
                 ]
             ]
@@ -101,10 +85,10 @@ def map(pos):
     elif(pos==len(tr.HELP_MSG)-1):
         url = f"https://t.me/{SUPPORT_GROUP}"
         button = [
-            [InlineKeyboardButton("➕ Add me to your Group 🙋‍♀️", url=f"https://t.me/{BOT_USERNAME}?startgroup=true")],
-            [InlineKeyboardButton(text = '📲 Updates', url=f"https://t.me/{UPDATES_CHANNEL}"),
-             InlineKeyboardButton(text = '💬 Support', url=f"https://t.me/{SUPPORT_GROUP}")],
-            [InlineKeyboardButton(text = '🛠 Source Code 🛠', url=f"https://{SOURCE_CODE}")],
+            [InlineKeyboardButton("➕ Məni Qrupunuza əlavə edin 🙋🏻‍♂️", url=f"https://t.me/{BOT_USERNAME}?startgroup=true")],
+            [InlineKeyboardButton(text = '📲 Yeniliklər', url=f"https://t.me/{UPDATES_CHANNEL}"),
+             InlineKeyboardButton(text = '💬 Dəstək Qrupu', url=f"https://t.me/{SUPPORT_GROUP}")],
+            [InlineKeyboardButton(text = '👨🏻‍💻 Sahibim 👨🏻‍💻', url=f"https://t.me/BrendOwner")],
             [InlineKeyboardButton(text = '◀️', callback_data = f"help+{pos-1}")]
         ]
     else:
@@ -119,12 +103,12 @@ def map(pos):
 @Client.on_message(filters.command("help") & ~filters.private & ~filters.channel)
 async def ghelp(_, message: Message):
     await message.reply_text(
-        f"""**🙋‍♀️ Hello there! I can play music in the voice chats of telegram groups & channels.**""",
+        f"""**🙋‍♀️ Salam! Telegram qrupları və kanallarının səsli söhbətlərində musiqi səsləndirə bilərəm.**""",
         reply_markup=InlineKeyboardMarkup(
             [
                 [
                     InlineKeyboardButton(
-                        "🟡 Click here for help 🟡", url=f"https://t.me/{BOT_USERNAME}?start"
+                        "🟡Kömək üçün buraya vurun🟡", url=f"https://t.me/{SUPPORT_GROUP}?start"
                     )
                 ]
             ]
