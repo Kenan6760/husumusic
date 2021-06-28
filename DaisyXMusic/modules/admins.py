@@ -1,20 +1,3 @@
-# Calls Music 1 - Telegram bot for streaming audio in group calls
-# Copyright (C) 2021  Roj Serbest
-
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU Affero General Public License as
-# published by the Free Software Foundation, either version 3 of the
-# License, or (at your option) any later version.
-
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU Affero General Public License for more details.
-#
-# You should have received a copy of the GNU Affero General Public License
-# along with this program.  If not, see <https://www.gnu.org/licenses/>.
-
-
 from asyncio import QueueEmpty
 from pyrogram import Client 
 from pyrogram import filters
@@ -31,7 +14,7 @@ from DaisyXMusic.services.callsmusic import callsmusic
 from DaisyXMusic.services.queues import queues
 
 
-@Client.on_message(filters.command("adminreset"))
+@Client.on_message(filters.command("reload"))
 async def update_admin(client, message: Message):
     chat_id = get_chat_id(message.chat)
     set(
@@ -41,7 +24,7 @@ async def update_admin(client, message: Message):
             for member in await message.chat.get_members(filter="administrators")
         ],
     )
-    await message.reply_text("❇️ Admin cache refreshed!")
+    await message.reply_text("❇️ Admin bazası yeniləndi!")
 
 
 @Client.on_message(command("pause") & other_filters)
@@ -52,10 +35,10 @@ async def pause(_, message: Message):
     if (chat_id not in callsmusic.active_chats) or (
         callsmusic.active_chats[chat_id] == "paused"
     ):
-        await message.reply_text("❗ Nothing is playing!")
+        await message.reply_text("❗ Heç bir şey oxunmur!")
     else:
         callsmusic.pause(chat_id)
-        await message.reply_text("▶️ Paused!")
+        await message.reply_text("▶️ Dayandırıldı!")
 
 
 @Client.on_message(command("resume") & other_filters)
@@ -66,10 +49,10 @@ async def resume(_, message: Message):
     if (chat_id not in callsmusic.active_chats) or (
         callsmusic.active_chats[chat_id] == "playing"
     ):
-        await message.reply_text("❗ Nothing is paused!")
+        await message.reply_text("❗ Heç bir şey dayandırılmayıbki!")
     else:
         callsmusic.resume(chat_id)
-        await message.reply_text("⏸ Resumed!")
+        await message.reply_text("⏸ Davam edir!")
 
 
 @Client.on_message(command("end") & other_filters)
@@ -86,7 +69,7 @@ async def stop(_, message: Message):
             pass
 
         await callsmusic.stop(chat_id)
-        await message.reply_text("❌ Stopped streaming!")
+        await message.reply_text("❌ Musiqi dayandırıldı!")
 
 
 @Client.on_message(command("skip") & other_filters)
@@ -96,7 +79,7 @@ async def skip(_, message: Message):
     global que
     chat_id = get_chat_id(message.chat)
     if chat_id not in callsmusic.active_chats:
-        await message.reply_text("❗ Nothing is playing to skip!")
+        await message.reply_text("❗ Keçmək üçün heç bir şey oynamır!")
     else:
         queues.task_done(chat_id)
         if queues.is_empty(chat_id):
@@ -112,7 +95,7 @@ async def skip(_, message: Message):
         skip = qeue.pop(0)
     if not qeue:
         return
-    await message.reply_text(f"- Skipped **{skip[0]}**\n- Now Playing **{qeue[0][0]}**")
+    await message.reply_text(f"- İndi oxunur **{qeue[0][0]}**\n- Keçildi **{skip[0]}**")
 
 
 @Client.on_message(filters.command("admincache"))
@@ -125,4 +108,4 @@ async def admincache(client, message: Message):
             for member in await message.chat.get_members(filter="administrators")
         ],
     )
-    await message.reply_text("❇️ Admin cache refreshed!")
+    await message.reply_text("❇️ Admin bazası yeniləndi!")
