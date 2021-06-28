@@ -1,21 +1,3 @@
-# Daisyxmusic (Telegram bot project )
-# Copyright (C) 2021  Inukaasith
-
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU Affero General Public License as
-# published by the Free Software Foundation, either version 3 of the
-# License, or (at your option) any later version.
-
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU Affero General Public License for more details.
-#
-# You should have received a copy of the GNU Affero General Public License
-# along with this program.  If not, see <https://www.gnu.org/licenses/>.
-
-
-# the logging things
 import logging
 
 from pyrogram import Client as app
@@ -44,10 +26,10 @@ async def ytsearch(_, message: Message):
         i = 0
         text = ""
         while i < 4:
-            text += f"Title - {results[i]['title']}\n"
-            text += f"Duration - {results[i]['duration']}\n"
-            text += f"Views - {results[i]['views']}\n"
-            text += f"Channel - {results[i]['channel']}\n"
+            text += f"Başlıq - {results[i]['title']}\n"
+            text += f"Müddət - {results[i]['duration']}\n"
+            text += f"Baxış - {results[i]['views']}\n"
+            text += f"Kanal - {results[i]['channel']}\n"
             text += f"https://youtube.com{results[i]['url_suffix']}\n\n"
             i += 1
         await m.edit(text, disable_web_page_preview=True)
