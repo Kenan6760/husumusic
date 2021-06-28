@@ -1,19 +1,3 @@
-# Daisyxmusic (Telegram bot project )
-# Copyright (C) 2021  Inukaasith
-
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU Affero General Public License as
-# published by the Free Software Foundation, either version 3 of the
-# License, or (at your option) any later version.
-
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU Affero General Public License for more details.
-#
-# You should have received a copy of the GNU Affero General Public License
-# along with this program.  If not, see <https://www.gnu.org/licenses/>.
-
 from pyrogram import Client
 import asyncio
 from DaisyXMusic.config import SUDO_USERS
@@ -34,7 +18,7 @@ async def pmPermit(client: USER, message: Message):
                 return
             await USER.send_message(
                 message.chat.id,
-                "Hi there, This is a music assistant service .\n\n ❗️ Rules:\n   - No chatting allowed\n   - No spam allowed \n\n 👉 **SEND GROUP INVITE LINK OR USERNAME IF USERBOT CAN'T JOIN YOUR GROUP.**\n\n ⚠️ Disclamer: If you are sending a message here it means admin will see your message and join chat\n    - Don't add this user to secret groups.\n   - Don't Share private info here\n\n",
+                "Salam, bu Brend Asistant xidmətidir.\n\n ❗️ Qaydalar:\n   - Söhbətə icazə verilmir\n   - Spam olmaz \n\n 👉 **ASİSTANT SİZİN QRUPUNUZA QATILA BİLMƏSƏ, QRUP LİNKİNİ GÖNDƏRİN.**\n\n ⚠️ Diqqət: Buraya bir mesaj göndərirsinizsə, demək Sahibim mesajınızı görəcək və məni söhbətə qatacaq\n    - Bu istifadəçini gizli qruplara əlavə etməyin.\n   - Şəxsi məlumatları burada paylaşmayın\n\n",
             )
             return
 
@@ -48,11 +32,11 @@ async def bye(client: Client, message: Message):
         queryy = text[1]
         if queryy == "on":
             PMSET = True
-            await message.reply_text("Pmpermit turned on")
+            await message.reply_text("Pm aktivləşdirildi")
             return
         if queryy == "off":
             PMSET = None
-            await message.reply_text("Pmpermit turned off")
+            await message.reply_text("Pm söndürüldü")
             return
 
 @USER.on_message(filters.text & filters.private & filters.me)        
@@ -60,7 +44,7 @@ async def autopmPermiat(client: USER, message: Message):
     chat_id = message.chat.id
     if not chat_id in pchats:
         pchats.append(chat_id)
-        await message.reply_text("Approoved to PM due to outgoing messages")
+        await message.reply_text("Mesaj göndərilməsi səbəbindən PM təsdiq edildi")
         return
     message.continue_propagation()    
     
@@ -69,7 +53,7 @@ async def pmPermiat(client: USER, message: Message):
     chat_id = message.chat.id
     if not chat_id in pchats:
         pchats.append(chat_id)
-        await message.reply_text("Approoved to PM")
+        await message.reply_text("PM icazəsi aktivləşdirildi")
         return
     message.continue_propagation()    
     
@@ -79,6 +63,6 @@ async def rmpmPermiat(client: USER, message: Message):
     chat_id = message.chat.id
     if chat_id in pchats:
         pchats.remove(chat_id)
-        await message.reply_text("Dispprooved to PM")
+        await message.reply_text("PM deaktiv edildi")
         return
     message.continue_propagation()
