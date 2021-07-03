@@ -317,7 +317,7 @@ async def m_cb(b, cb):
 
             if queues.is_empty(chet_id):
                 callsmusic.stop(chet_id)
-                await cb.message.edit("- No More Playlist..\n- Leaving VC!")
+                await cb.message.edit("- Artıq pleylist yoxdur..\n- Səsli söhbətdən çıxırıq!")
             else:
                 await callsmusic.set_stream(
                     chet_id, queues.get(chet_id)["file"]
