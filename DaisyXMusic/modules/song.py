@@ -53,7 +53,7 @@ def song(client, message):
         m.edit("❌ Heç bir şey tapılmadı.\n\nBaşqa bir musiqi adı sınayın və ya musiqinin adını düzgün şəkildə yaza bilərsiniz.")
         print(str(e))
         return
-    m.edit("Mahnı yüklənir")
+    m.edit("Brend Musiqiniz yüklənir📥")
     try:
         with youtube_dl.YoutubeDL(ydl_opts) as ydl:
             info_dict = ydl.extract_info(link, download=False)
