@@ -84,7 +84,7 @@ async def playlist(client, message):
 def updated_stats(chat, queue, vol=100):
     if chat.id in callsmusic.active_chats:
         # if chat.id in active_chats:
-        stats = "Settings of **{}**".format(chat.title)
+        stats = "**{}** parametrləri".format(chat.title)
         if len(que) > 0:
             stats += "\n\n"
             stats += "Səs : {}%\n".format(vol)
