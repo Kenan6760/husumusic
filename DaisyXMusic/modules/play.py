@@ -224,7 +224,7 @@ async def settings(client, message):
 
 
 @Client.on_message(
-    filters.command("musicplayer") & ~filters.edited & ~filters.bot & ~filters.private
+    filters.command("brend") & ~filters.edited & ~filters.bot & ~filters.private
 )
 @authorized_users_only
 async def hfmm(_, message):
@@ -247,7 +247,7 @@ async def hfmm(_, message):
             return
         DISABLED_GROUPS.remove(message.chat.id)
         await lel.edit(
-            f"Söhbətdəki istifadəçilər üçün musiqi pleyeri uğurla effektivləşdirildi. Qrup ID-si: {message.chat.id}"
+            f"Söhbətdəki istifadəçilər üçün Brend Music uğurla aktivləşdirildi. Qrup ID-si: {message.chat.id}"
         )
 
     elif status == "OFF" or status == "off" or status == "Off":
@@ -258,7 +258,7 @@ async def hfmm(_, message):
             return
         DISABLED_GROUPS.append(message.chat.id)
         await lel.edit(
-            f"Söhbətdəki istifadəçilər üçün musiqi pleyeri uğurla deaktiv edildi. Qrup ID-si: {message.chat.id}"
+            f"Söhbətdəki istifadəçilər üçün Brend Music uğurla deaktivləşdirildi. Qrup ID-si: {message.chat.id}"
         )
     else:
         await message.reply_text(
