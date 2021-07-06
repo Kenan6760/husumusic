@@ -604,7 +604,7 @@ async def play(_, message: Message):
         await message.reply_photo(
             photo="final.png",
             reply_markup=keyboard,
-            caption=f"{} Tərəfindən sifariş olunan musiqi səsli söhbətdə oxunur".format(
+            caption="▶️{} <b>Tərəfindən</b> sifariş olunan musiqi səsli söhbətdə oxunur".format(
                 message.from_user.mention()
             ),
         )
