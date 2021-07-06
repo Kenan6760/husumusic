@@ -113,7 +113,7 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
     draw.text((205, 630), f"Baxış: {views}", (255, 255, 255), font=font)
     draw.text(
         (205, 670),
-        f"Əlavə etdi: {requested_by}",
+        f"Kanal: {requested_by}",
         (255, 255, 255),
         font=font,
     )
@@ -199,7 +199,7 @@ async def ee(client, message):
     if stats:
         await message.reply(stats)
     else:
-        await message.reply("Bu söhbətdə işləyən səsli söhbət yoxdur yoxdur")
+        await message.reply("Bu söhbətdə aktiv səsli söhbət yoxdur yoxdur")
 
 
 @Client.on_message(filters.command("player") & filters.group & ~filters.edited)
@@ -235,7 +235,7 @@ async def hfmm(_, message):
         return
     if len(message.command) != 2:
         await message.reply_text(
-            "Yalnızca `/musicplayer on` və `/musicplayer off` əmrlərini tanıyıram"
+            "Yalnızca `/brend on` və `/brend off` əmrlərini tanıyıram"
         )
         return
     status = message.text.split(None, 1)[1]
@@ -243,26 +243,26 @@ async def hfmm(_, message):
     if status == "ON" or status == "on" or status == "On":
         lel = await message.reply("`Proses başladılır...`")
         if not message.chat.id in DISABLED_GROUPS:
-            await lel.edit("Bu Çatda Artıq Musiqi çalar Aktivləşdirilib")
+            await lel.edit("Bu Qruoda Brend Music Aktivləşdirilib")
             return
         DISABLED_GROUPS.remove(message.chat.id)
         await lel.edit(
-            f"Söhbətdəki istifadəçilər üçün Brend Music uğurla aktivləşdirildi. Qrup ID-si: {message.chat.id}"
+            f"🥳Söhbətdəki istifadəçilər üçün Brend Music uğurla aktivləşdirildi🔓.\nQrup ID-si: {message.chat.id}"
         )
 
     elif status == "OFF" or status == "off" or status == "Off":
         lel = await message.reply("`Proses başladılır...`")
         
         if message.chat.id in DISABLED_GROUPS:
-            await lel.edit("Musiqi Çalar Bu Söhbəti Artıq söndürdü")
+            await lel.edit("Brend Music Bu Söhbətdə Artıq Deaktivdir🔒")
             return
         DISABLED_GROUPS.append(message.chat.id)
         await lel.edit(
-            f"Söhbətdəki istifadəçilər üçün Brend Music uğurla deaktivləşdirildi. Qrup ID-si: {message.chat.id}"
+            f"Söhbətdəki istifadəçilər üçün Brend Music uğurla deaktivləşdirildi🔒.\nQrup ID-si: {message.chat.id}"
         )
     else:
         await message.reply_text(
-            "Yalnızca `/musicplayer on` və `/musicplayer off` əmrlərini tanıyıram"
+            "Yalnızca `/brend on` və `/brend off` əmrlərini tanıyıram"
         )    
         
 
@@ -416,7 +416,7 @@ async def m_cb(b, cb):
                 await callsmusic.set_stream(
                     chet_id, queues.get(chet_id)["file"]
                 )
-                await cb.answer.reply_text("✅ <b>Növbətiyə keçildi</b>")
+                await cb.answer.reply_text("✅ <b>Növbəti mahnıya keçildi</b>")
                 await cb.message.edit((m_chat, qeue), reply_markup=r_ply(the_data))
                 await cb.message.reply_text(
                     f"- Keçirilmiş musiqi\n- İndi oxudulur **{qeue[0][0]}**"
@@ -441,7 +441,7 @@ async def play(_, message: Message):
     global useer
     if message.chat.id in DISABLED_GROUPS:
         return    
-    lel = await message.reply("🔄 <b>Proses başlandı</b>")
+    lel = await message.reply("🔄 <b>Brend Music</b>")
     administrators = await get_administrators(message.chat)
     chid = message.chat.id
 
@@ -466,7 +466,7 @@ async def play(_, message: Message):
                     invitelink = await _.export_chat_invite_link(chid)
                 except:
                     await lel.edit(
-                        "<b>Əvvəlcə məni qrupunuzun admini kimi əlavə edin</b>",
+                        "<b>Əvvəlcə məni qrupunuza admin kimi əlavə edin</b>",
                     )
                     return
 
@@ -485,14 +485,14 @@ async def play(_, message: Message):
                     # print(e)
                     await lel.edit(
                         f"<b>🔴 Xəta Baş verdi 🔴 \n{user.first_name} qrupdan ban olunduğundan qrupunuza qoşula bilmədi! Asistantın qrupda qadağan olunmadığından əmin olun."
-                        "\n\nVə ya əlinizlə qrupunuza @BrendMusicAsistant əlavə edin və yenidən cəhd edin</b>",
+                        "\n\nVə ya əlinizlə qrupunuza @BrendMusicAsistant əlavə edin</b>",
                     )
     try:
         await USER.get_chat(chid)
         # lmoa = await client.get_chat_member(chid,wew)
     except:
         await lel.edit(
-            f"<i> {user.first_name} Bu söhbətdə yoxdur, adminlərdən ilk dəfə /play <musiqi adı> göndərməsini istəyin və ya {user.first_name} əl ilə əlavə edin</i>"
+            f"<i> {user.first_name} Asistant bu söhbətdə yoxdur, adminlərdən ilk dəfə /play <musiqi adı> göndərməsini istəyin və ya {user.first_name} əl ilə əlavə edin</i>"
         )
         return
     text_links=None
@@ -537,10 +537,10 @@ async def play(_, message: Message):
         )
         file_name = get_file_name(audio)
         title = file_name
-        thumb_name = "https://telegra.ph/file/f6086f8909fbfeb0844f2.png"
+        thumb_name = "https://telegra.ph/file/25345dfb9e0d27909b9be.png"
         thumbnail = thumb_name
         duration = round(audio.duration / 60)
-        views = "Locally added"
+        views = "Yerli olaraq əlavə edildi"
         requested_by = message.from_user.first_name
         await generate_cover(requested_by, title, views, duration, thumbnail)
         file_path = await convert(
@@ -550,7 +550,7 @@ async def play(_, message: Message):
         )
     elif urls:
         query = toxt
-        await lel.edit("🎵 <b>Proses Başlandı</b>")
+        await lel.edit("🎵 <b>Brend Music</b>")
         ydl_opts = {"format": "bestaudio[ext=m4a]"}
         try:
             results = YoutubeSearch(query, max_results=1).to_dict()
@@ -567,7 +567,7 @@ async def play(_, message: Message):
 
         except Exception as e:
             await lel.edit(
-                "Mahnı tapılmadı. Başqa bir mahnını sınayın və ya adını düzgün tərtib edin."
+                "Mahnı tapılmadı. Başqa bir mahnını sınayın və ya adını düzgün yazın."
             )
             print(str(e))
             return
@@ -607,7 +607,7 @@ async def play(_, message: Message):
         for i in message.command[1:]:
             query += " " + str(i)
         print(query)
-        await lel.edit("🎵 **Proses başlandı**")
+        await lel.edit("🎵 **Brend Music**")
         ydl_opts = {"format": "bestaudio[ext=m4a]"}
         
         try:
@@ -616,7 +616,7 @@ async def play(_, message: Message):
           await lel.edit("Mənə oxutmaq üçün bir şey ver")
         # Looks like hell. Aren't it?? FUCK OFF
         try:
-            toxxt = "**Oxutmaq istədiyiniz mahnını seçin**\n\n"
+            toxxt = "**Oxutmaq istədiyiniz mahnını seçin**🤔\n\n"
             j = 0
             useer=user_name
             emojilist = ["1️⃣","2️⃣","3️⃣","4️⃣","5️⃣",]
@@ -647,7 +647,7 @@ async def play(_, message: Message):
             return
             # Returning to pornhub
         except:
-            await lel.edit("Seçmək üçün kifayət qədər nəticə yoxdur... Birbaşa oxutmağa başlayıram..")
+            await lel.edit("Seçim üçün çoxlu nəticə yoxdur... Birbaşa oxutmağa başlayıram..")
                         
             # print(results)
             try:
@@ -663,7 +663,7 @@ async def play(_, message: Message):
 
             except Exception as e:
                 await lel.edit(
-                    "Mahnı tapılmadı. Başqa bir mahnını sınayın və ya düzgün tərtib edin."
+                    "Mahnı tapılmadı. Başqa bir mahnını adı daxil edin və ya mahnının adını düzgün yazın🙂"
                 )
                 print(str(e))
                 return
@@ -673,7 +673,7 @@ async def play(_, message: Message):
                     dur += (int(dur_arr[i]) * secmul)
                     secmul *= 60
                 if (dur / 60) > DURATION_LIMIT:
-                     await lel.edit(f"❌ {DURATION_LIMIT} dəqiqədən uzun musiqilərin oynatılmasına icazə verilmir!")
+                     await lel.edit(f"❌ {DURATION_LIMIT} dəqiqədən uzun musiqilərin oxudulmasına icazə verilmir!")
                      return
             except:
                 pass
@@ -739,7 +739,7 @@ async def play(_, message: Message):
         return await lel.delete()
 
 
-@Client.on_message(filters.command("ytplay") & filters.group & ~filters.edited)
+@Client.on_message(filters.command("play") & filters.group & ~filters.edited)
 async def ytplay(_, message: Message):
     global que
     if message.chat.id in DISABLED_GROUPS:
@@ -769,14 +769,14 @@ async def ytplay(_, message: Message):
                     invitelink = await _.export_chat_invite_link(chid)
                 except:
                     await lel.edit(
-                        "<b>Əvvəlcə məni qrupunuzun admini kimi əlavə edin</b>",
+                        "<b>Əvvəlcə məni qrupunuza admin kimi əlavə edin</b>",
                     )
                     return
 
                 try:
                     await USER.join_chat(invitelink)
                     await USER.send_message(
-                        message.chat.id, "Bu qrupa səsli söhbətdə musiqi oynatmaq üçün qoşuldum"
+                        message.chat.id, "Bu qrupa səsli söhbətdə musiqi oxutmaq üçün qoşuldum😋"
                     )
                     await lel.edit(
                         "<b>Asistant Söhbətinizə qoşuldu</b>",
@@ -787,15 +787,15 @@ async def ytplay(_, message: Message):
                 except Exception:
                     # print(e)
                     await lel.edit(
-                        f"<b>🔴 Xəta Baş verdi 🔴 \n{user.first_name} qrupdan ban olunduğundan qrupunuza qoşula bilmədi! Asistantın qrupda qadağan olunmadığından əmin olun."
-                        "\n\nVə ya əlinizlə qrupunuza @BrendMusicAsistant əlavə edin və yenidən cəhd edin</b>",
+                        f"<b>🔴 Xəta Baş verdi 🔴 \n\n{user.first_name} qrupdan ban olunduğundan qrupunuza qoşula bilmədi! Asistantın qrupda ban olunmadığından əmin olun."
+                        "\n\nVə ya özünüz qrupa @BrendMusicAsistant -ı əlavə edin</b>",
                     )
     try:
         await USER.get_chat(chid)
         # lmoa = await client.get_chat_member(chid,wew)
     except:
         await lel.edit(
-            f"<i> {user.first_name} Bu söhbətdə yoxdur, admindən ilk dəfə /play əmrini göndərib mahnı oxutmasını istəyin və ya {user.first_name} əl ilə əlavə edin</i>"
+            f"<i> {user.first_name} Asistant bu söhbətdə yoxdur, admindən ilk dəfə /play əmrini göndərib mahnı oxutmasını istəyin və ya {user.first_name} özünüz əlavə edin ( /add əmrinidə istifadə edə bilərsiniz )</i>"
         )
         return
     await lel.edit("🔎 <b>Axtarılır</b>")
@@ -807,7 +807,7 @@ async def ytplay(_, message: Message):
     for i in message.command[1:]:
         query += " " + str(i)
     print(query)
-    await lel.edit("🎵 <b>Proses başladılır</b>")
+    await lel.edit("🎵 <b>Brend Music</b>")
     ydl_opts = {"format": "bestaudio[ext=m4a]"}
     try:
         results = YoutubeSearch(query, max_results=1).to_dict()
@@ -824,7 +824,7 @@ async def ytplay(_, message: Message):
 
     except Exception as e:
         await lel.edit(
-            "Mahnı tapılmadı. Başqa bir mahnını sınayın və ya düzgün yazım."
+            "Mahnı tapılmadı. Başqa bir mahnını daxil edin və ya mahnının adını düzgün yazım."
         )
         print(str(e))
         return
@@ -834,7 +834,7 @@ async def ytplay(_, message: Message):
             dur += (int(dur_arr[i]) * secmul)
             secmul *= 60
         if (dur / 60) > DURATION_LIMIT:
-             await lel.edit(f"❌ {DURATION_LIMIT} dəqiqədən uzun musiqilərin oynatılmasına icazə verilmir!")
+             await lel.edit(f"❌ {DURATION_LIMIT} dəqiqədən uzun musiqilərin oxudulmasına icazə verilmir!")
              return
     except:
         pass    
@@ -870,7 +870,7 @@ async def ytplay(_, message: Message):
         qeue.append(appendable)
         await message.reply_photo(
             photo="final.png",
-            caption=f"#⃣{position} ilə nömrələnərək <b>növbəyə salındı</b>!",
+            caption=f"#⃣{position} ilə nömrələnərək <b>növbəyə əlavə olundu</b>!",
             reply_markup=keyboard,
         )
         os.remove("final.png")
@@ -887,7 +887,7 @@ async def ytplay(_, message: Message):
         try:
            await callsmusic.set_stream(chat_id, file_path)
         except:
-            message.reply("Qrup zəngi açıq deyil və ya qoşula bilmirəm")
+            message.reply("😕Qrupda səsli söhbət açıq deyil")
             return
         await message.reply_photo(
             photo="final.png",
