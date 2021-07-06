@@ -441,7 +441,7 @@ async def play(_, message: Message):
             await lel.edit(
                 f"❌ {DURATION_LIMIT} dəqiqədən uzun səslərin oxudulamasına icazə verilmir!"
             
-            return
+      return
         keyboard = InlineKeyboardMarkup(
             [
                 [
