@@ -468,7 +468,7 @@ async def play(_, message: Message):
                 try:
                     await USER.join_chat(invitelink)
                     await USER.send_message(
-                        message.chat.id, "Bu qrupa səsli söhbətdə musiqi oynamaq üçün qoşuldum"
+                        message.chat.id, "Bu qrupa səsli söhbətdə musiqi oxutmaq üçün qoşuldum"
                     )
                     await lel.edit(
                         "<b>Asistant söhbətinizə qatıldı</b>",
@@ -591,7 +591,7 @@ async def play(_, message: Message):
                     InlineKeyboardButton(text="🎬 YouTube", url=f"{url}"),
                     InlineKeyboardButton(text="Dəstək 💬", url=f"t.me/brendsup"),
                 ],
-                [InlineKeyboardButton(text="❌ Close", callback_data="cls")],
+                [InlineKeyboardButton(text="❌ Bağla", callback_data="cls")],
             ]
         )
         requested_by = message.from_user.first_name
@@ -1189,9 +1189,9 @@ async def lol_cb(b, cb):
         return
     useer_id = int(useer_id)
     if cb.from_user.id != useer_id:
-        await cb.answer("Siz mahnını çalmağı istəyən şəxs deyilsiniz!", show_alert=True)
+        await cb.answer("Siz mahnını sifariş verən şəxs deyilsiniz!", show_alert=True)
         return
-    await cb.message.edit("Qulaq asın ... Oyutmağa başlanılır")
+    await cb.message.edit("Qulaq asın... Oxutmağa başlanılır😉")
     x=int(x)
     try:
         useer_name = cb.message.reply_to_message.from_user.first_name
@@ -1280,7 +1280,7 @@ async def lol_cb(b, cb):
         await b.send_photo(chat_id,
             photo="final.png",
             reply_markup=keyboard,
-            caption=f"▶️ {r_by.mention} tərəfindən istənilən mahnı burada <b>oynanır</b>.",
+            caption=f"▶️ {r_by.mention} tərəfindən istənilən mahnı səsli söhbətdə <b>oxunur</b>.",
         )
         
         os.remove("final.png")
