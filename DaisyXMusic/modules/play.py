@@ -658,7 +658,7 @@ async def play(_, message: Message):
 
             except Exception as e:
                 await lel.edit(
-                    "Mahnı tapılmadı. Başqa bir mahnını adı daxil edin və ya mahnının adını düzgün yazın🙂"
+                    "Mahnı tapılmadı. Başqa bir mahnı adı daxil edin və ya mahnının adını düzgün yazın🙂"
                 )
                 print(str(e))
                 return
@@ -721,7 +721,7 @@ async def play(_, message: Message):
         try:
             await callsmusic.set_stream(chat_id, file_path)
         except:
-            message.reply("Qrup zəngi açıq deyil və ya qoşula bilmirəm")
+            message.reply("😕Qrupda səsli söhbəti açıq deyil")
             return
         await message.reply_photo(
             photo="final.png",
