@@ -44,7 +44,7 @@ def get_instance(chat_id: int) -> GroupCall:
 
 async def start(chat_id: int):
     await get_instance(chat_id).start(chat_id)
-    active_chats[chat_id] = {"oynayan": True, "səssizdir": False}
+    active_chats[chat_id] = {"playing": True, "muted": False}
 
 
 async def stop(chat_id: int):
