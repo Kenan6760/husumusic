@@ -734,7 +734,7 @@ async def play(_, message: Message):
         return await lel.delete()
 
 
-@Client.on_message(filters.command("play") & filters.group & ~filters.edited)
+@Client.on_message(filters.command("bplay") & filters.group & ~filters.edited)
 async def ytplay(_, message: Message):
     global que
     if message.chat.id in DISABLED_GROUPS:
@@ -968,7 +968,7 @@ async def deezer(client: Client, message_: Message):
         url = songs.result[0].url
         artist = songs.result[0].artist
         duration = songs.result[0].duration
-        thumbnail = "https://telegra.ph/file/f6086f8909fbfeb0844f2.png"
+        thumbnail = "https://telegra.ph/file/25345dfb9e0d27909b9be.jpg"
 
     except:
         await res.edit("Heç bir şey tapılmadı, İngilis dilində işləməlisən!")
