@@ -107,9 +107,9 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
     Image.alpha_composite(image5, image6).save("temp.png")
     img = Image.open("temp.png")
     draw = ImageDraw.Draw(img)
-    font = ImageFont.truetype("etc/brendfont.otf", 32)
+    font = ImageFont.truetype("etc/font.otf", 32)
     draw.text((205, 550), f"Başlıq: {title}", (51, 215, 255), font=font)
-    draw.text((205, 590), f"Müddət: {duration}", (255, 255, 255), font=font)
+    draw.text((205, 590), f"Vaxt: {duration}", (255, 255, 255), font=font)
     draw.text((205, 630), f"Baxış: {views}", (255, 255, 255), font=font)
     draw.text((205, 670), f"Kanal: {requested_by}", (255, 255, 255), font=font)
     img.save("final.png")
@@ -124,19 +124,19 @@ async def playlist(client, message):
         return    
     queue = que.get(message.chat.id)
     if not queue:
-        await message.reply_text("Player is idle")
+        await message.reply_text("Asistant Boşdur")
     temp = []
     for t in queue:
         temp.append(t)
     now_playing = temp[0][0]
     by = temp[0][1].mention(style="md")
-    msg = "**İndi Oxunur** in {}".format(message.chat.title)
+    msg = "{} **Qrupunda İndi Oxunur**".format(message.chat.title)
     msg += "\n- " + now_playing
-    msg += "\n- İstədi " + by
+    msg += "\n- İstədi: " + by
     temp.pop(0)
     if temp:
         msg += "\n\n"
-        msg += "**Növbə**"
+        msg += "**Növbəti**"
         for song in temp:
             name = song[0]
             usr = song[1].mention(style="md")
@@ -151,7 +151,7 @@ async def playlist(client, message):
 def updated_stats(chat, queue, vol=200):
     if chat.id in callsmusic.active_chats:
         # if chat.id in active_chats:
-        stats = "Settings of **{}**".format(chat.title)
+        stats = "**{}** parametrləri".format(chat.title)
         if len(que) > 0:
             stats += "\n\n"
             stats += "Səs: {}%\n".format(vol)
@@ -278,13 +278,13 @@ async def p_cb(b, cb):
             temp.append(t)
         now_playing = temp[0][0]
         by = temp[0][1].mention(style="md")
-        msg = "<b>İndi Oxunur</b> in {}".format(cb.message.chat.title)
+        msg = "{} <b>Qrupunda İndi Oxunur</b>".format(cb.message.chat.title)
         msg += "\n- " + now_playing
         msg += "\n- İstədi: " + by
         temp.pop(0)
         if temp:
             msg += "\n\n"
-            msg += "**Növbə**"
+            msg += "**Növbəti**"
             for song in temp:
                 name = song[0]
                 usr = song[1].mention(style="md")
@@ -300,7 +300,7 @@ async def p_cb(b, cb):
 async def m_cb(b, cb):
     global que
     if (
-        cb.message.chat.title.startswith("Channel Music: ")
+        cb.message.chat.title.startswith("Kanal musiqisi: ")
         and chat.title[14:].isnumeric()
     ):
         chet_id = int(chat.title[13:])
@@ -345,17 +345,17 @@ async def m_cb(b, cb):
             temp.append(t)
         now_playing = temp[0][0]
         by = temp[0][1].mention(style="md")
-        msg = "**İndi Oxunur** in {}".format(cb.message.chat.title)
+        msg = "{} **Qrupunda İndi Oxunur**".format(cb.message.chat.title)
         msg += "\n- " + now_playing
         msg += "\n- İstədi " + by
         temp.pop(0)
         if temp:
             msg += "\n\n"
-            msg += "**Növbə**"
+            msg += "**Növbəti**"
             for song in temp:
                 name = song[0]
                 usr = song[1].mention(style="md")
-                msg += f"\n- {name}"
+                msg += f"\n\n- {name}"
                 msg += f"\n- İstədi {usr}\n"
         await cb.message.edit(msg)
 
@@ -366,7 +366,7 @@ async def m_cb(b, cb):
             await cb.answer("Söhbət birləşdirilməyib və ya əvvəlcədən oxudulur", show_alert=True)
         else:
             callsmusic.resume(chet_id)
-            await cb.answer("Music Resumed!")
+            await cb.answer("Musiqi davam etdirildi!")
     elif type_ == "puse":
         if (chet_id not in callsmusic.active_chats) or (
             callsmusic.active_chats[chet_id] == "paused"
