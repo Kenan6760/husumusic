@@ -1191,7 +1191,7 @@ async def lol_cb(b, cb):
     if cb.from_user.id != useer_id:
         await cb.answer("Siz mahnını sifariş verən şəxs deyilsiniz!", show_alert=True)
         return
-    await cb.message.edit("Qulaq asın... Oxutmağa başlanılır😉")
+    await cb.message.edit("Asistant səsli söhbətə qoşulur😉")
     x=int(x)
     try:
         useer_name = cb.message.reply_to_message.from_user.first_name
