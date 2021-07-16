@@ -15,6 +15,7 @@ logging.basicConfig(level=logging.INFO)
 
 @Client.on_message(filters.private & filters.incoming & filters.command(['start']))
 def _start(client, message):
+    await AddUserToDatabase(client, message)
     client.send_message(message.chat.id,
         text=tr.START_MSG.format(message.from_user.first_name, message.from_user.id),
         parse_mode="markdown",
@@ -39,6 +40,7 @@ def _start(client, message):
 
 @Client.on_message(filters.command("start") & ~filters.private & ~filters.channel)
 async def gstart(_, message: Message):
+    await AddUserToDatabase(_, message)
     await message.reply_text(
         f"""**🔴 Brend Music aktivdir ✅**""",
         reply_markup=InlineKeyboardMarkup(
@@ -55,6 +57,7 @@ async def gstart(_, message: Message):
 
 @Client.on_message(filters.private & filters.incoming & filters.command(['help']))
 def _help(client, message):
+    await AddUserToDatabase(client, message)
     client.send_message(chat_id = message.chat.id,
         text = tr.HELP_MSG[1],
         parse_mode="markdown",
@@ -115,3 +118,16 @@ async def ghelp(_, message: Message):
         ),
     )
 
+@Client.on_message(filters.private & filters.command("yayim") & filters.reply & filters.user(config.BOT_OWNER) & ~filters.edited)
+async def _broadcast(_, m: Message):
+    await broadcast_handler(m)
+
+
+@Client.on_message(filters.private & filters.command("status") & filters.user(config.BOT_OWNER))
+async def _status(_, m: Message):
+    total_users = await db.total_users_count()
+    await m.reply_text(
+        text=f"**DB-də ümumi istifadəçilər: {total_users}**",
+        parse_mode="Markdown",
+        quote=True
+    )
