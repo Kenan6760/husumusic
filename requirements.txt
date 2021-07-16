@@ -1,6 +1,6 @@
 Pyrogram
 TgCrypto
-pytgcalls
+git+https://github.com/pytgcalls/pytgcalls
 python-dotenv
 youtube_dl
 youtube_search_python
@@ -19,3 +19,4 @@ ffmpeg
 motor
 pymongo
 tswift
+dnspython
