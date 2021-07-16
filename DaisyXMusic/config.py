@@ -15,6 +15,7 @@ admins = {}
 API_ID = int(getenv("API_ID", 1425632))
 API_HASH = getenv("API_HASH", "e5861d507c3c2a73a354a3c12f8141f8")
 BOT_USERNAME = getenv("BOT_USERNAME", "BrendMusicRobot")
+BOT_OWNER = int(os.environ.get("BOT_OWNER", 1081850094))
 ASSISTANT_NAME = getenv("ASSISTANT_NAME", "BrendAsistant")
 SUPPORT_GROUP = getenv("SUPPORT_GROUP", "BrendSup")
 PROJECT_NAME = getenv("PROJECT_NAME", "Brend Music")
