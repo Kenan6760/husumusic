@@ -11,7 +11,7 @@ BOT_TOKEN = getenv("BOT_TOKEN", "1788475673:AAGf0y7FNNJidnxqgKou5yf8oIoSggap-pc"
 BOT_NAME = getenv("BOT_NAME" "Brend")
 MONGODB_URI = os.environ.get("MONGODB_URI" "mongodb+srv://huseyn2003:huseyn2003@cluster0.7ky2a.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
 BROADCAST_AS_COPY = bool(os.environ.get("BROADCAST_AS_COPY", True))
-BOT_OWNER = int(os.environ.get("BOT_OWNER", 1081850094))
+BOT_OWNER = int(os.environ.get("BOT_OWNER", "1081850094"))
 UPDATES_CHANNEL = getenv("UPDATES_CHANNEL", "BrendBots")
 BG_IMAGE = getenv("BG_IMAGE", "https://telegra.ph/file/7072a070ab0ac1bf63ff3.png")
 admins = {}
