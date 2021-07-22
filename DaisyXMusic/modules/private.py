@@ -19,9 +19,9 @@ from DaisyXMusic.config import BOT_USERNAME
 logging.basicConfig(level=logging.INFO)
 
 @Client.on_message(filters.private & filters.incoming & filters.command(['start']))
-def _start(client, message):
-    await AddUserToDatabase(client, message)
-    client.send_message(message.chat.id,
+async def _start(client, message):
+   await AddUserToDatabase(client, message)
+   await client.send_message(message.chat.id,
         text=tr.START_MSG.format(message.from_user.first_name, message.from_user.id),
         parse_mode="markdown",
         reply_markup=InlineKeyboardMarkup(
@@ -61,9 +61,9 @@ async def gstart(_, message: Message):
 
 
 @Client.on_message(filters.private & filters.incoming & filters.command(['help']))
-def _help(client, message):
+async def _help(client, message):
     await AddUserToDatabase(client, message)
-    client.send_message(chat_id = message.chat.id,
+    await client.send_message(chat_id = message.chat.id,
         text = tr.HELP_MSG[1],
         parse_mode="markdown",
         disable_web_page_preview=True,
@@ -75,7 +75,7 @@ def _help(client, message):
 help_callback_filter = filters.create(lambda _, __, query: query.data.startswith('help+'))
 
 @Client.on_callback_query(help_callback_filter)
-def help_answer(client, callback_query):
+async def help_answer(client, callback_query):
     chat_id = callback_query.from_user.id
     disable_web_page_preview=True
     message_id = callback_query.message.message_id
@@ -85,7 +85,7 @@ def help_answer(client, callback_query):
     )
 
 
-def map(pos):
+async def map(pos):
     if(pos==1):
         button = [
             [InlineKeyboardButton(text = '▶️', callback_data = "help+2")]
