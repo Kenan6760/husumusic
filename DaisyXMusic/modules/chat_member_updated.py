@@ -18,7 +18,7 @@ async def chat_member_updated(_, chat_member_updated: ChatMemberUpdated):
             ) and (
                 (
                     chat_member_updated.new_chat_member.user.id
-                ) not in admins.admins[chat_member_updated.chat.id]
+                ) not in admins.administrators[chat_member_updated.chat.id]
             )
         ) else (
             admins.admins[chat_member_updated.chat.id].remove(
@@ -27,5 +27,5 @@ async def chat_member_updated(_, chat_member_updated: ChatMemberUpdated):
         ) if (
             (
                 chat_member_updated.new_chat_member.user.id
-            ) in admins.admins[chat_member_updated.chat.id]
+            ) in admins.administrators[chat_member_updated.chat.id]
         ) else None
