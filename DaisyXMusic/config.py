@@ -6,7 +6,7 @@ if os.path.exists("local.env"):
     load_dotenv("local.env")
 
 que = {}
-SESSION_NAME = getenv("SESSION_NAME", "AgBRHEcvadUNrSPx8U-ss9bZR4XG2VyRqw7apNa99N-uwqyhwUl4UsiygdMbLQeYnOVT8hXEu09AFZYyAA-rKySQbSjl43GUllRt3S9gXJ8NzBrSp0UhjtAXIRR_RECde9ad4Fsu4X51g65Su4KcpOseNhzg3XUcS9iVOOXShoYydUZKDtIRgl-4KUXrqBrX38mfUu0-ymcyqwOt4JQpBT0lo6od6Ep5KgHt05LHtlbw7xcW-j3Bxc9L-Z1xKhckvP0ckGO6Y5nxQfcnlE0wh71X3lLKmbHlVR4LLBN8GUdSe5Tm_Ueo-opD6hx4tyr16LNzAtYnQu9vo_ltCVHs_jSCXEmt_AA")
+SESSION_NAME = getenv("SESSION_NAME", "AgBnWwr3OBBotQmDL-MCCW-rLbocQmHga6K0BxV_DcyNBOkxOcTPvZA2ElJnTGkES8k5xaYvETelm2KES85KghacK9azC6NSR-FRFcMBrH00zY757OoZxiqZ26NM9z9vxYEUjNslfeI2gpAaF-4Moa0UaQKUpknjsXaVU2oNVBDKmv9Y0SPr60sSlLFX8YIIRob5CKzldyDX5r7AFD6zgosjSnRIx8eoAgcTgWjpO1JbXu8I3gMTh8YByPCjnLXV2tKnQYcLdjniQfmPtTFKK0S6d6sw41xfFCtXapvknQGnBpBfAXWnetgGUNuOIZaNgkcAM6ok8i0xe2eSimbb6rDOXEmt_AA")
 BOT_TOKEN = getenv("BOT_TOKEN", "1788475673:AAGf0y7FNNJidnxqgKou5yf8oIoSggap-pc")
 BOT_NAME = getenv("BOT_NAME" "Brend")
 MONGODB_URI = os.environ.get("MONGODB_URI" "mongodb+srv://husumusic12:husumusic12@cluster0.n8mm6.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
