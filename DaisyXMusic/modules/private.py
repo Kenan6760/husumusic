@@ -5,11 +5,6 @@ from pyrogram import filters
 from pyrogram.types import InlineKeyboardMarkup
 from pyrogram.types import InlineKeyboardButton
 from pyrogram.types import Message
-from DaisyXMusic.access_db import db
-from DaisyXMusic.add_user import AddUserToDatabase
-from DaisyXMusic.helpers.broadcast import broadcast_handler
-from pyrogram.errors import UserNotParticipant
-from DaisyXMusic import config
 from DaisyXMusic.config import SOURCE_CODE
 from DaisyXMusic.config import ASSISTANT_NAME
 from DaisyXMusic.config import PROJECT_NAME
@@ -19,9 +14,8 @@ from DaisyXMusic.config import BOT_USERNAME
 logging.basicConfig(level=logging.INFO)
 
 @Client.on_message(filters.private & filters.incoming & filters.command(['start']))
-async def _start(client, message):
-   await AddUserToDatabase(client, message)
-   await client.send_message(message.chat.id,
+def _start(client, message):
+    client.send_message(message.chat.id,
         text=tr.START_MSG.format(message.from_user.first_name, message.from_user.id),
         parse_mode="markdown",
         reply_markup=InlineKeyboardMarkup(
@@ -61,9 +55,8 @@ async def gstart(_, message: Message):
 
 
 @Client.on_message(filters.private & filters.incoming & filters.command(['help']))
-async def _help(client, message):
-    await AddUserToDatabase(client, message)
-    await client.send_message(chat_id = message.chat.id,
+def _help(client, message):
+    client.send_message(chat_id = message.chat.id,
         text = tr.HELP_MSG[1],
         parse_mode="markdown",
         disable_web_page_preview=True,
@@ -75,7 +68,7 @@ async def _help(client, message):
 help_callback_filter = filters.create(lambda _, __, query: query.data.startswith('help+'))
 
 @Client.on_callback_query(help_callback_filter)
-async def help_answer(client, callback_query):
+def help_answer(client, callback_query):
     chat_id = callback_query.from_user.id
     disable_web_page_preview=True
     message_id = callback_query.message.message_id
