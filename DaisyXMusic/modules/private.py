@@ -78,7 +78,7 @@ def help_answer(client, callback_query):
     )
 
 
-async def map(pos):
+def map(pos):
     if(pos==1):
         button = [
             [InlineKeyboardButton(text = '▶️', callback_data = "help+2")]
@@ -114,19 +114,4 @@ async def ghelp(_, message: Message):
                 ]
             ]
         ),
-    )
-
-
-@Client.on_message(filters.private & filters.command("yayim") & filters.reply & filters.user(config.BOT_OWNER) & ~filters.edited)
-async def _broadcast(_, m: Message):
-    await broadcast_handler(m)
-
-
-@Client.on_message(filters.private & filters.command("status") & filters.user(config.BOT_OWNER))
-async def _status(_, m: Message):
-    total_users = await db.total_users_count()
-    await m.reply_text(
-        text=f"**DB-də ümumi istifadəçilər: {total_users}**",
-        parse_mode="Markdown",
-        quote=True
     )
