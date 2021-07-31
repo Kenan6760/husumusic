@@ -9,9 +9,6 @@ que = {}
 SESSION_NAME = getenv("SESSION_NAME", "AgBnWwr3OBBotQmDL-MCCW-rLbocQmHga6K0BxV_DcyNBOkxOcTPvZA2ElJnTGkES8k5xaYvETelm2KES85KghacK9azC6NSR-FRFcMBrH00zY757OoZxiqZ26NM9z9vxYEUjNslfeI2gpAaF-4Moa0UaQKUpknjsXaVU2oNVBDKmv9Y0SPr60sSlLFX8YIIRob5CKzldyDX5r7AFD6zgosjSnRIx8eoAgcTgWjpO1JbXu8I3gMTh8YByPCjnLXV2tKnQYcLdjniQfmPtTFKK0S6d6sw41xfFCtXapvknQGnBpBfAXWnetgGUNuOIZaNgkcAM6ok8i0xe2eSimbb6rDOXEmt_AA")
 BOT_TOKEN = getenv("BOT_TOKEN", "1788475673:AAGf0y7FNNJidnxqgKou5yf8oIoSggap-pc")
 BOT_NAME = getenv("BOT_NAME" "Brend")
-MONGODB_URI = os.environ.get("MONGODB_URI" "mongodb+srv://husumusic12:husumusic12@cluster0.n8mm6.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
-BROADCAST_AS_COPY = bool(os.environ.get("BROADCAST_AS_COPY", False))
-BOT_OWNER = int(os.environ.get("BOT_OWNER", "1081850094"))
 UPDATES_CHANNEL = getenv("UPDATES_CHANNEL", "BrendBots")
 BG_IMAGE = getenv("BG_IMAGE", "https://telegra.ph/file/7072a070ab0ac1bf63ff3.png")
 admins = {}
